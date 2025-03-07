@@ -1,18 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gitlogin/auth/reset.dart';
-import 'package:gitlogin/auth/signup.dart';
+import 'package:gitlogin/auth/login.dart';
 import 'package:gitlogin/resources/constants.dart';
-import 'package:gitlogin/view/homeScreen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
@@ -44,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 const Spacer(),
                 const Text(
-                  'LogIn',
+                  'Create an Account',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -94,24 +91,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.only(left: 16),
                         child: Divider(color: Colors.grey[300]),
                       ),
-                      // const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Checkbox(
-                            value: rememberMe,
-                            onChanged: (value) {
-                              setState(() {
-                                rememberMe = value!;
-                              });
-                            },
+                      const Padding(
+                        padding: EdgeInsets.only(left: 16),
+                        child: TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: 'Confirm Password',
+                            border: InputBorder.none,
                           ),
-                          const Text(
-                            'REMEMBER ME.',
-                            style: TextStyle(color: Colors.purple),
-                          ),
-                        ],
+                        ),
                       ),
-                      const SizedBox(height: 4),
                     ],
                   ),
                 ),
@@ -125,22 +114,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     minimumSize: const Size(double.infinity, 50),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomeScreen()),
-                    );
-                  },
-                  child: const Text('LogIn'),
+                  onPressed: () {},
+                  child: const Text('SignUp'),
                 ),
                 const SizedBox(height: 20),
                 RichText(
                   text: TextSpan(
-                    text: "Don't have an account? ",
-                    style: const TextStyle(color: Colors.black, fontSize: 14),
+                    text: "Already have an account? ",
+                    style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400,),
                     children: [
                       TextSpan(
-                        text: 'Create an Account',
+                        text: 'LogIn',
                         style: const TextStyle(
                           color: Colors.blue,
                           fontSize: 14,
@@ -151,33 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ..onTap = () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const SignupScreen()),
-                            );
-                          },
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Forgot Password? ',
-                    style: const TextStyle(color: Colors.black, fontSize: 14),
-                    children: [
-                      TextSpan(
-                        text: 'Reset it.',
-                        style: const TextStyle(
-                            color: Colors.blue,
-                            decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const ResetScreen()),
+                              MaterialPageRoute(builder: (context) => const LoginScreen()),
                             );
                           },
                       ),
@@ -196,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 // const Spacer(),
-                const SizedBox(height: 100,)
+                const SizedBox(height: 120,)
               ],
             ),
           ),

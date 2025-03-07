@@ -8,6 +8,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Function() onNotificationPressed;
 
   MyAppBar({
+    super.key,
     required this.title,
     required this.notiflg,
     required this.showBackButton,
@@ -17,36 +18,57 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.pink.shade100,
       title: Text(
         title,
-        style: TextStyle(color: Colors.white, fontSize: 16),
+        style: const TextStyle(
+            color: Colors.black, fontWeight: FontWeight.w700, fontSize: 20),
       ),
       leading: showBackButton
           ? IconButton(
-              icon: Icon(Icons.keyboard_arrow_left),
+              icon: Image.asset(
+                ConstantImage.arrow,
+                height: 18,
+                width: 18,
+              ),
+              color: Colors.white,
               onPressed: () {
                 Navigator.pop(context ?? context!);
               },
             )
-          : null,
-      actions: [
-        notiflg
-            ? IconButton(
-                icon: Image.asset(
-                  ConstantImage.noti_icon,
-                  height: 20,
-                  width: 20,
-                ),
-                onPressed: onNotificationPressed,
-              )
-            : SizedBox(),
-      ],
+          : IconButton(
+              icon: Image.asset(
+                ConstantImage.drawer,
+                height: 30,
+                width: 30,
+              ),
+              color: Colors.white,
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            ),
+      // //
+      // null,
+      // actions: [
+      //   notiflg
+      //       ? Padding(
+      //         padding: const EdgeInsets.only(right: 10),
+      //         child: IconButton(
+      //             icon: Image.asset(
+      //               ConstantImage.noti_icon,
+      //               height: 20,
+      //               width: 20,
+      //             ),
+      //             onPressed: onNotificationPressed,
+      //           ),
+      //       )
+      //       : const SizedBox(),
+      // ],
       iconTheme: const IconThemeData(color: Colors.white),
       elevation: 0,
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

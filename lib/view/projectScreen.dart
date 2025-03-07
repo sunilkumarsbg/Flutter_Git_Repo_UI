@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../resources/appbar.dart';
 
 class ProjectScreen extends StatefulWidget {
@@ -9,146 +8,115 @@ class ProjectScreen extends StatefulWidget {
   _ProjectScreenState createState() => _ProjectScreenState();
 }
 
-Widget buildButton(String label) {
-  return Padding(
-    padding: const EdgeInsets.all(2),
-    child: ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        primary: label == "Button 1" ? Colors.black : Colors.grey,
-        onPrimary: Colors.white,
-      ),
-      child: Text(label),
-    ),
-  );
-}
-
 class _ProjectScreenState extends State<ProjectScreen> {
-  final List<String> buttonLabels = ['Button 1', 'Button 2', 'Button 3', 'Button 4'];
+  final List<String> buttonLabels = [
+    'Button 1',
+    'Button 2',
+    'Button 3',
+    'Button 4'
+  ];
+  final List<Map<String, String>> projects = [
+    {'title': 'Surgtest', 'subtitle': 'Vijay', 'image': 'folder.png'},
+    {'title': 'TNULM', 'subtitle': 'Vikky', 'image': 'folder.png'},
+    {'title': 'Erp one', 'subtitle': 'Vikky', 'image': 'folder.png'},
+    {'title': 'Aggromalie', 'subtitle': 'Rajesh Kannan', 'image': 'folder.png'},
+    {'title': 'Erp one', 'subtitle': 'Vikky', 'image': 'folder.png'},
+    {'title': 'Aggromalie', 'subtitle': 'Rajesh Kannan', 'image': 'folder.png'},
+    {'title': 'Erp one', 'subtitle': 'Vikky', 'image': 'folder.png'},
+    {'title': 'Aggromalie', 'subtitle': 'Rajesh Kannan', 'image': 'folder.png'},
+  ];
 
-  List<Widget> buildListTiles() {
-    List<Widget> listTiles = [];
-
-    // Sample data for list tiles
-    List<Map<String, String>> projects = [
-      {'title': 'Heavenly', 'subtitle': 'Rajesh Kannan', 'image': 'heavenly.png'},
-      {'title': 'Heavenly', 'subtitle': 'Rajesh Kannan', 'image': 'folder.png'},
-      {'title': 'Surgtest', 'subtitle': 'Vijay', 'image': 'folder.png'},
-      {'title': 'TNULM', 'subtitle': 'Vikky', 'image': 'folder.png'},
-      {'title': 'Erp one', 'subtitle': 'Vikky', 'image': 'folder.png'},
-      {'title': 'Aggromalie', 'subtitle': 'Rajesh Kannan', 'image': 'folder.png'},
-    ];
-
-    for (int i = 0; i < projects.length; i++) {
-      listTiles.add(ListTile(
-        leading: Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            image: DecorationImage(
-              image: AssetImage('assets/images/${projects[i]['image']}'),
-              fit: BoxFit.cover,
-            ),
-          ),
+  Widget _buildButton(String label) {
+    return Padding(
+      padding: const EdgeInsets.all(2),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          foregroundColor: label == "Button 1" ? Colors.black : Colors.grey,
+          backgroundColor: Colors.white,
         ),
-        title: Text(
-          projects[i]['title']!,
-          style: TextStyle(color: Colors.black, fontSize: 16),
-        ),
-        subtitle: Text(
-          projects[i]['subtitle']!,
-          style: TextStyle(color: const Color(0xff5F607E), fontSize: 14),
-        ),
-        onTap: () {
-          // Handle the tap on the ListTile
-        },
-      ));
-      if (i < projects.length - 1) {
-        listTiles.add(SizedBox(height: 10));
-      }
-    }
+        child: Text(label),
+      ),
+    );
+  }
 
-    return listTiles;
+  Widget _buildListTile(Map<String, String> project) {
+    return Column(
+      children: [
+        ListTile(
+          leading: Image.asset('assets/images/${project['image']}',
+              width: 40, height: 40, fit: BoxFit.cover),
+          title: Text(project['title']!,
+              style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16)),
+          subtitle: Text(project['subtitle']!,
+              style: const TextStyle( color: Colors.black,fontWeight: FontWeight.w400,  fontSize: 14)),
+          onTap: () {},
+        ),
+        const SizedBox(height: 10),
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: 'Project',
-        onNotificationPressed: () {
-          // Handle notification icon press
-        },
-        notiflg: false,
-        showBackButton: true,
-      ),
+          title: 'Project',
+          onNotificationPressed: () {},
+          notiflg: false,
+          showBackButton: true),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 110,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.blue,
+            width: double.infinity,
+            color: Colors.pink.shade100,
             child: Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    leading: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/heavenly.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    title: const Text(
-                      'Heavenly',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                    subtitle: const Text(
-                      'Rajesh Kannan',
-                      style: TextStyle(color: Color(0xffE1E2FF), fontSize: 14),
-                    ),
-                    onTap: () {
-                      // Handle the tap on the ListTile
-                    },
+                    leading: Image.asset('assets/images/heavenly.png',
+                        width: 40, height: 40, fit: BoxFit.cover),
+                    title: const Text('Heavenly',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16)),
+                    subtitle: const Text('Rajesh Kannan',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14)),
+                    onTap: () {},
                   ),
-                  const SizedBox(height: 2),
                   const Padding(
                     padding: EdgeInsets.only(left: 16),
-                    child: Text(
-                      'Last update : 24/04/2023 9.30am',
-                      style: TextStyle(color: Color(0xffE1E2FF), fontSize: 14),
-                    ),
+                    child: Text('Last update : 24/04/2023 9.30am',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14)),
                   ),
                 ],
               ),
             ),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: buttonLabels.map((label) => buildButton(label)).toList(),
-              ),
-            ),
-          ),
+          // SingleChildScrollView(
+          //   scrollDirection: Axis.horizontal,
+          //   child: Row(children: buttonLabels.map((label) => _buildButton(label)).toList()),
+          // ),
           const SizedBox(height: 10),
-          Column(
-            children: buildListTiles(),
+          Expanded(
+            child: ListView(
+                children: projects
+                    .map((project) => _buildListTile(project))
+                    .toList()),
           ),
         ],
       ),
     );
   }
 }
-

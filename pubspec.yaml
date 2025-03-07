@@ -79,6 +79,15 @@ flutter:
      - assets/images/heavenly.png
      - assets/images/aggro.png
      - assets/images/folder.png
+     - assets/images/drawer.png
+     - assets/images/left-arrow.png
+     - assets/images/left-arrows.png
+     - assets/images/github.png
+     - assets/images/fb.png
+     - assets/images/google.png
+     - assets/images/git.png
+     - assets/images/warining.png
+     - assets/images/verify.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
